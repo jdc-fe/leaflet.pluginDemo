@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Migration Layer</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+<style>
+    html,
+    body, .box, #map {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .control {
+        position: absolute;
+        top: 0;
+        z-index: 1000;
+        right: 0;
+    }
+</style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="control">
+            <button onclick="addData()">add data</button>
+            <button onclick="removeData()">remove data</button>
+            <button onclick="updateColor()">update color</button>
+        </div>
+        <div id="map"></div>
+    </div>
+
+    <script src="./index.js"></script>
+    <script>
+    (function() {
+        var lrmap = L.map('map').setView([35.4199, 95.2402], 4);
+        L.tileLayer('http://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
+            subdomains: ["1", "2", "3", "4"]
+        }).addTo(lrmap);
+        const data = [
+            // 北京
+            { lng: 116.404844, lat: 39.91405 },
+            // 新疆
+            { lng: 84.9023, lat: 42.148 },
+            { lng: 81.9023, lat: 42.4 },
+            { lng: 84.9023, lat: 42.458 }
+        ]
+        const mylayer = L.myLayer(data, { color: 'blue' });
+        mylayer.addTo(lrmap);
+
+        function randomRgba() {
+            const getNum = () => Math.floor(Math.random() * 255);
+            const a = Math.random().toFixed(1)
+            return 'rgba('+getNum()+', '+getNum()+', '+getNum()+', ' + a + ')'
+        }
+        window.updateColor = function() {
+            mylayer.updateColor(randomRgba())
+        }
+        window.addData = function() {
+            data.push({
+                lng: 84.9023, lat: 44.148
+            })
+            mylayer.updateData(data)
+        }
+        window.removeData = function() {
+            data.pop();
+            mylayer.updateData(data);
+        }
+    })();
+    </script>
+</body>
+</html>
