@@ -22,3 +22,9 @@
 
 - layer api: https://leafletjs.com/reference-1.5.0.html#layer-onadd
 - map api: https://leafletjs.com/reference-1.5.0.html#map-overlaypane
+
+## github fork
+- git remote add upstream git@github.com:jdc-fe/leaflet.pluginDemo.git
+- git fetch upstream
+- gco -b hlj
+- git merge upstream/feature/hlj
