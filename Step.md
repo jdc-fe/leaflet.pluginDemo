@@ -19,5 +19,8 @@
 8. 最后结果展现总结
 
 
+附录：
 - layer api: https://leafletjs.com/reference-1.5.0.html#layer-onadd
 - map api: https://leafletjs.com/reference-1.5.0.html#map-overlaypane
+- plugin guide: https://github.com/Leaflet/Leaflet/blob/master/PLUGIN-GUIDE.md#plugin-api
+- L.Layer Extension methods: https://leafletjs.com/reference-1.5.0.html#layer-onadd
